@@ -1,6 +1,8 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import Header from "@/components/header";
+import { ClerkProvider } from "@clerk/nextjs";
+import { shadesOfPurple } from "@clerk/themes";
 
 export const metadata = {
   title: "BoardVault",
@@ -9,15 +11,25 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Header/>
-          <main>
-            {children}
-          </main>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider appearance={{
+      baseTheme: shadesOfPurple,
+      variables: {
+        colorPrimary: "#6366F1",
+        colorSecondary: "#22D3EE",
+        colorBackground: "#121212",
+        colorText: "#E5E7EB",
+      }
+    }}>
+      <html lang="en" suppressHydrationWarning>
+        <body>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <Header />
+            <main>
+              {children}
+            </main>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
