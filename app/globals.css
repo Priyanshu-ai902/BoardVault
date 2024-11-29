@@ -70,3 +70,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.gradient-title {
+  background: linear-gradient(90deg, #622263, #42a59f); /* Purple to teal-cyan */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
