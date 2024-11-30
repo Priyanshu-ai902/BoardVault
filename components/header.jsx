@@ -2,17 +2,21 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 import { Button } from "./ui/button"
 import { PlusCircleIcon } from "lucide-react"
+import UserMenu from "./user-menu"
+import { checkUser } from "@/lib/checkUser"
 
-const Header = () => {
+const Header = async () => {
+
+  await checkUser()
   return (
     <header className="container mx-auto ">
       <nav className="py-5 px-2 flex justify-between items-center ">
         <Link href="/">
           <div className="text-3xl font-bold ">
-            
-              <span className="text-purple-400 dark:text-purple-700">Board</span>
-              <span className="text-cyan-400 dark:text-cyan-300">Vault</span>
-            
+
+            <span className="text-purple-400 dark:text-purple-700">Board</span>
+            <span className="text-cyan-400 dark:text-cyan-300">Vault</span>
+
           </div>
         </Link>
 
@@ -37,7 +41,7 @@ const Header = () => {
           </SignedOut>
 
           <SignedIn>
-
+            <UserMenu />
           </SignedIn>
         </div>
       </nav>
