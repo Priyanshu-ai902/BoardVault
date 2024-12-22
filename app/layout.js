@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadesOfPurple } from "@clerk/themes";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "BoardVault",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
             <main>
               {children}
             </main>
+            <Toaster richColors/>
           </ThemeProvider>
         </body>
       </html>
