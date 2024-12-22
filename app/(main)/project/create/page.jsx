@@ -8,7 +8,6 @@ import { useOrganization, useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import useFetch from "@/hooks/use-fetch";
 import { projectSchema } from "@/app/lib/validators";
 import { createProject } from "@/actions/projects";
 import { BarLoader } from "react-spinners";
@@ -34,12 +33,7 @@ export default function CreateProjectPage() {
     }
   }, [isOrgLoaded, isUserLoaded, membership]);
 
-  const {
-    loading,
-    error,
-    data: project,
-    fn: createProjectFn,
-  } = useFetch(createProject);
+  
 
   const onSubmit = async (data) => {
     if (!isAdmin) {
@@ -47,13 +41,10 @@ export default function CreateProjectPage() {
       return;
     }
 
-    createProjectFn(data);
+    createProject(data);
   };
 
-  useEffect(() => {
-    if (project) router.push(`/project/${project.id}`);
-  }, [loading]);
-
+  
   if (!isOrgLoaded || !isUserLoaded) {
     return null;
   }
@@ -114,18 +105,16 @@ export default function CreateProjectPage() {
             </p>
           )}
         </div>
-        {loading && (
-          <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />
-        )}
+        
         <Button
           type="submit"
           size="lg"
-          disabled={loading}
+          
           className="bg-blue-500 text-white"
         >
-          {loading ? "Creating..." : "Create Project"}
+         
         </Button>
-        {error && <p className="text-red-500 mt-2">{error.message}</p>}
+        
       </form>
     </div>
   );
