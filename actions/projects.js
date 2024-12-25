@@ -50,7 +50,6 @@ export async function getProject(projectId) {
     throw new Error("Unauthorized");
   }
 
-  // Find user to verify existence
   const user = await db.user.findUnique({
     where: { clerkUserId: userId },
   });
