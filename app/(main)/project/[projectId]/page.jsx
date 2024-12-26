@@ -1,11 +1,20 @@
-import React from 'react'
+import { getProject } from "@/actions/projects";
+import { notFound } from "next/navigation";
 
-const page = () => {
+
+export default async function ProjectPage({ params }) {
+  const { projectId } = params;
+  const project = await getProject(projectId);
+
+  if (!project) {
+    notFound();
+  }
+
   return (
-    <div>
-      project page
-    </div>
-  )
-}
+    <div className="container mx-auto">
+      {/* <SprintCreationForm/> */}
 
-export default page
+      {/* {project.sprints} */}
+    </div>
+  );
+}
