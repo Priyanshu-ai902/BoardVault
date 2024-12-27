@@ -5,16 +5,13 @@ import { toast } from "sonner";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BarLoader } from "react-spinners";
-import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+
 import useFetch from "@/hooks/use-fetch";
 
-import statuses from "@/data/status";
-import { getIssuesForSprint, updateIssueOrder } from "@/actions/issues";
+
 
 import SprintManager from "./sprint-manager";
-import IssueCreationDrawer from "./create-issue";
-import IssueCard from "@/components/issue-card";
-import BoardFilters from "./board-filters";
+
 
 function reorder(list, startIndex, endIndex) {
   const result = Array.from(list);
@@ -32,15 +29,7 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
 
-  const {
-    loading: issuesLoading,
-    error: issuesError,
-    fn: fetchIssues,
-    data: issues,
-    setData: setIssues,
-  } = useFetch(getIssuesForSprint);
 
-  const [filteredIssues, setFilteredIssues] = useState(issues);
 
   const handleFilterChange = (newFilteredIssues) => {
     setFilteredIssues(newFilteredIssues);
@@ -48,9 +37,8 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
 
   useEffect(() => {
     if (currentSprint.id) {
-      fetchIssues(currentSprint.id);
+      // fetchIssues(currentSprint.id);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSprint.id]);
 
   const handleAddIssue = (status) => {
@@ -62,11 +50,7 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
     fetchIssues(currentSprint.id);
   };
 
-  const {
-    fn: updateIssueOrderFn,
-    loading: updateIssuesLoading,
-    error: updateIssuesError,
-  } = useFetch(updateIssueOrder);
+
 
   const onDragEnd = async (result) => {
     if (currentSprint.status === "PLANNED") {
@@ -92,7 +76,6 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
 
     const newOrderedData = [...issues];
 
-    // source and destination list
     const sourceList = newOrderedData.filter(
       (list) => list.status === source.droppableId
     );
@@ -112,20 +95,16 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
         card.order = i;
       });
     } else {
-      // remove card from the source list
       const [movedCard] = sourceList.splice(source.index, 1);
 
-      // assign the new list id to the moved card
       movedCard.status = destination.droppableId;
 
-      // add new card to the destination list
       destinationList.splice(destination.index, 0, movedCard);
 
       sourceList.forEach((card, i) => {
         card.order = i;
       });
 
-      // update the order for each card in destination list
       destinationList.forEach((card, i) => {
         card.order = i;
       });
@@ -137,7 +116,6 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
     updateIssueOrderFn(sortedIssues);
   };
 
-  if (issuesError) return <div>Error loading issues</div>;
 
   return (
     <div className="flex flex-col">
@@ -148,89 +126,7 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
         projectId={projectId}
       />
 
-      {issues && !issuesLoading && (
-        <BoardFilters issues={issues} onFilterChange={handleFilterChange} />
-      )}
-
-      {updateIssuesError && (
-        <p className="text-red-500 mt-2">{updateIssuesError.message}</p>
-      )}
-      {(updateIssuesLoading || issuesLoading) && (
-        <BarLoader className="mt-4" width={"100%"} color="#36d7b7" />
-      )}
-
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 bg-slate-900 p-4 rounded-lg">
-          {statuses.map((column) => (
-            <Droppable key={column.key} droppableId={column.key}>
-              {(provided) => (
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  className="space-y-2"
-                >
-                  <h3 className="font-semibold mb-2 text-center">
-                    {column.name}
-                  </h3>
-                  {filteredIssues
-                    ?.filter((issue) => issue.status === column.key)
-                    .map((issue, index) => (
-                      <Draggable
-                        key={issue.id}
-                        draggableId={issue.id}
-                        index={index}
-                        isDragDisabled={updateIssuesLoading}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <IssueCard
-                              issue={issue}
-                              onDelete={() => fetchIssues(currentSprint.id)}
-                              onUpdate={(updated) =>
-                                setIssues((issues) =>
-                                  issues.map((issue) => {
-                                    if (issue.id === updated.id) return updated;
-                                    return issue;
-                                  })
-                                )
-                              }
-                            />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                  {provided.placeholder}
-                  {column.key === "TODO" &&
-                    currentSprint.status !== "COMPLETED" && (
-                      <Button
-                        variant="ghost"
-                        className="w-full"
-                        onClick={() => handleAddIssue(column.key)}
-                      >
-                        <Plus className="mr-2 h-4 w-4" />
-                        Create Issue
-                      </Button>
-                    )}
-                </div>
-              )}
-            </Droppable>
-          ))}
-        </div>
-      </DragDropContext>
-
-      <IssueCreationDrawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        sprintId={currentSprint.id}
-        status={selectedStatus}
-        projectId={projectId}
-        onIssueCreated={handleIssueCreated}
-        orgId={orgId}
-      />
+      
     </div>
   );
 }
