@@ -13,7 +13,8 @@ import { getIssuesForSprint, updateIssueOrder } from "@/actions/issues";
 
 import SprintManager from "./sprint-manager";
 import IssueCreationDrawer from "./create-issue";
-
+import IssueCard from "@/components/issue-card";
+// import BoardFilters from "./board-filters";
 
 function reorder(list, startIndex, endIndex) {
   const result = Array.from(list);
@@ -45,7 +46,11 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
     setFilteredIssues(newFilteredIssues);
   };
 
-  
+  useEffect(() => {
+    if (currentSprint.id) {
+      fetchIssues(currentSprint.id);
+    }
+  }, [currentSprint.id]);
 
   const handleAddIssue = (status) => {
     setSelectedStatus(status);
@@ -137,9 +142,9 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
         projectId={projectId}
       />
 
-      {issues && !issuesLoading && (
+      {/* {issues && !issuesLoading && (
         <BoardFilters issues={issues} onFilterChange={handleFilterChange} />
-      )}
+      )} */}
 
       {updateIssuesError && (
         <p className="text-red-500 mt-2">{updateIssuesError.message}</p>
@@ -161,7 +166,7 @@ export default function SprintBoard({ sprints, projectId, orgId }) {
                   <h3 className="font-semibold mb-2 text-center">
                     {column.name}
                   </h3>
-                  {filteredIssues
+                  {issues
                     ?.filter((issue) => issue.status === column.key)
                     .map((issue, index) => (
                       <Draggable
