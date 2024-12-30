@@ -76,3 +76,8 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.wmde-markdown ul{
+  list-style-type: disc;
+  padding-left: 15px !important;
+  color: white
+}
