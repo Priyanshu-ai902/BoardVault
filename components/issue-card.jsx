@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { formatDistanceToNow } from "date-fns";
+import IssueDetailsDialog from "./issue-details-dialog";
 import UserAvatar from "./user-avatar";
 import { useRouter } from "next/navigation";
 
@@ -68,7 +69,16 @@ export default function IssueCard({
         </CardFooter>
       </Card>
 
-      
+      {isDialogOpen && (
+        <IssueDetailsDialog
+          isOpen={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+          issue={issue}
+          onDelete={onDeleteHandler}
+          onUpdate={onUpdateHandler}
+          borderCol={priorityColor[issue.priority]}
+        />
+      )}
     </>
   );
 }

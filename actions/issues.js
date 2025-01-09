@@ -66,7 +66,7 @@ export async function updateIssueOrder(updatedIssues) {
     throw new Error("Unauthorized");
   }
 
-  // Start a transaction
+
   await db.$transaction(async (prisma) => {
     // Update each issue
     for (const issue of updatedIssues) {
