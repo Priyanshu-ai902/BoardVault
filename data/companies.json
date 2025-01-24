@@ -1,42 +1,42 @@
 [
     {
-      "name": "amazon",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "Software",
+      "path": "https://icon-library.com/images/software-icon-png/software-icon-png-10.jpg",
       "id": 1
     },
     {
-      "name": "atlassian",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "Operations",
+      "path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiVpoXi4_tVKw3DgwjEq2lptLKew1W0NBdeg&s",
       "id": 2
     },
     {
-      "name": "google",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "HR",
+      "path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmifmIsjjK6ZSkj_c7Fcr8qPJp36e96lR0cg&s",
       "id": 3
     },
     {
-      "name": "ibm",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "All Teams",
+      "path": "https://cdn-icons-png.freepik.com/256/6715/6715413.png?semt=ais_hybrid",
       "id": 4
     },
     {
-      "name": "meta",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "Marketing",
+      "path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS80vjWQSRO3IIspSJs6Xf91mIfGbpNbCaccA&s",
       "id": 5
     },
     {
-      "name": "microsoft",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "Design",
+      "path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG5VnQdUgJDqGZkJhidb-DOCWbrCKjS__6oQ&s",
       "id": 6
     },
     {
-      "name": "netflix",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "Sales",
+      "path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdIRvqbfUNpPQYrAZTo8pg7vxKJusgiFOz7Q&s",
       "id": 7
     },
     {
-      "name": "uber",
-      "path": "https://www.shutterstock.com/image-vector/chattogram-bangladesh-april-24-2023-600nw-2292992631.jpg",
+      "name": "Developer",
+      "path": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj3LQx3qKewswACP90L9ObvE2zoNnZLwdZOw&s",
       "id": 8
     }
   ]
