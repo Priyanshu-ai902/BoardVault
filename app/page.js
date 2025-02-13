@@ -155,6 +155,63 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+
+      <footer className="bg-slate-950 py-10 px-6 md:px-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-white">
+          <div>
+            <span className="text-3xl font-bold ">
+              <span className="text-purple-400 dark:text-purple-700">Board</span>
+              <span className="text-cyan-400 dark:text-cyan-300">Vault</span>
+            </span>
+            <h3 className="font-bold pt-4">Company</h3>
+            <ul className="mt-2 space-y-2">
+              <li>Careers</li>
+              <li>Events</li>
+              <li>Blogs</li>
+              <li>Investor Relations</li>
+              <li>Atlassian Foundation</li>
+              <li>Contact us</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold text-xl text-purple-200">Products</h3>
+            <ul className="mt-2 space-y-2">
+              <li>Rovo</li>
+              <li>Jira</li>
+              <li>Jira Align</li>
+              <li>Jira Service Management</li>
+              <li>Confluence</li>
+              <li>Trello</li>
+              <li>Bitbucket</li>
+            </ul>
+            
+          </div>
+          <div>
+            <h3 className="font-bold text-xl text-purple-200">Resources</h3>
+            <ul className="mt-2 space-y-2">
+              <li>Technical support</li>
+              <li>Purchasing & licensing</li>
+              <li>Atlassian Community</li>
+              <li>Knowledge base</li>
+              <li>Marketplace</li>
+              <li>My account</li>
+            </ul>
+            
+          </div>
+          <div>
+            <h3 className="font-bold text-xl text-purple-200">Learn</h3>
+            <ul className="mt-2 space-y-2">
+              <li>Partners</li>
+              <li>Training & certification</li>
+              <li>Documentation</li>
+              <li>Developer resources</li>
+              <li>Enterprise services</li>
+            </ul>
+            
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
