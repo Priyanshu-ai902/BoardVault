@@ -58,7 +58,7 @@ const features = [
       "Plan, track, and manage sprints to ensure timely delivery and efficient progress throughout the project.",
     image: "sprint.png",
   }
-];
+]; 
 
 export default function Home() {
   return (
@@ -83,7 +83,7 @@ export default function Home() {
         <img
           src="hero.png"
           alt="image"
-          height={900}
+          height={900} 
           width={1000}
           className="mx-auto block "
         />
