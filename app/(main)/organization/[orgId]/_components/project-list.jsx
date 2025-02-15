@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { getProjects } from "@/actions/organizations";
 import DeleteProject from "./delete-project";
+import { Button } from "@/components/ui/button";
+import { PlusCircleIcon } from "lucide-react";
 
 export default async function ProjectList({ orgId }) {
   const projects = await getProjects(orgId);
@@ -22,6 +24,17 @@ export default async function ProjectList({ orgId }) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <Link href='/project/create'>
+        <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+
+          <PlusCircleIcon size={18} />
+          <span>Create Project</span>
+        </Button>
+      </Link>
+
+
+      <div className=" flex flex-col">
       {projects.map((project) => (
         <Card key={project.id}>
           <CardHeader>
@@ -41,6 +54,9 @@ export default async function ProjectList({ orgId }) {
           </CardContent>
         </Card>
       ))}
+
+      </div>
+
     </div>
   );
 }
